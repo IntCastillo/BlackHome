@@ -1,0 +1,25 @@
+{
+  "presets": [
+    "next/babel",
+    "stage-0"
+  ],
+  "plugins": [
+    ["styled-components", {
+      "ssr": true,
+      "displayName": true,
+      "preprocess": false
+    }],
+    ["module-alias", [
+      {
+        "src": "./components",
+        "expose": "@/components"
+      },
+      {
+        "src": "./blackome.config.js",
+        "expose": "@/config"
+      },
+    ]],
+    ["transform-class-properties"],
+    ["transform-decorators-legacy"]
+  ]
+}
