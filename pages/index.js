@@ -1,106 +1,108 @@
 import React from 'react'
+import {Flex} from 'grid-styled'
 import styled, {css} from 'styled-components'
 // Components
 import {Layout} from '@/components'
 
 
+const FullScreenBox = styled(Flex).attrs({
+	pt: '8vh',
+	width: '100vh',
+	align: "center",
+	justify: "center",
+	wrap: true
+})` height: 100vh;`
+
+
 const gradientBackground = css`
-	background-image: linear-gradient(to right, #CC21AD, #EB7517);
-	background-image: -webkit-linear-gradient(left, #CC21AD, #EB7517);
+	background-image: linear-gradient(to right, #2F80ED, #56CCF2);
+	background-image: -webkit-linear-gradient(left, #2F80ED, #56CCF2);
 `
 
-const Row = styled.section`
-	/*border: 3px solid #f55;*/
+const StyledButton = styled.a`
+	background-color: ${props => props.inverted ? '#FFFFFF' : '#2F80ED'};
+	border-radius: 50px;
+	box-shadow: 1px 3px 7px rgba(0,0,0,0);
+	color: ${props => props.inverted ? '#2F80ED' : '#FFFFFF'};
 	display: inline-block;
-	padding: 0 ${props => props.padding || '5'}%;
-	position: ${props => props.fixed ? 'fixed' : 'relative'};
-	width: ${props => props.size || '100'}%;
-`
-
-const Container = styled.article`
-	/*border: 3px solid #5f5;*/
-	display: flex;
-	align-items: center;
-	justify-content: ${props => props.center ? 'center' : 'initial'};
-	height: 100vh;
-	margin: 0;
 	position: relative;
-	width: 100%;
+	font-weight: 500;
+	margin: 50px 10px;
+	padding: 10px 50px;
+ 	font-size: 20px;
+ 	${props => !props.inverted && gradientBackground}
+ 	&:hover { box-shadow: 3px 5px 8px rgba(86, 204, 242, 0.75); }
+ 	&:before {
+ 		content: '';
+		border-radius: 50px;
+ 		position: absolute;
+ 		top:-3px;
+ 		left:-3px;
+ 		right:-3px;
+ 		bottom:-3px;
+ 		${gradientBackground}
+ 		opacity: ${props => props.inverted ? '1' : '0'};
+ 		z-index: -1;
+ 	}
 `
 
-const Items = styled.div`
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	justify-content: flex-end;
-	position: relative;
-	width: 100%;
+const SubTitle = styled.h3`
+	color: #2F80ED;
+ 	font-size: 64px;
+	-webkit-background-clip: text;
+ 	-webkit-text-fill-color: transparent;
+ 	font-weight: 300;
+ 	margin: 0;
+	${gradientBackground}
 `
 
-const Item = styled.a`
-	border-bottom-left-radius: 50px;
-	border-top-left-radius: 50px;
-	color: #${props => props.active ? 'ffffff' : '636363'};
-	display: block;
-	flex-basis: 60%;
-	font-size: ${props => props.active ? '2.8' : '2.4'}em;
-	font-weight: ${props => props.active ? '400' : '300'};
-	margin-top: 25px;
-	padding: 18px ${props => props.active ? '105' : '90'}px 18px 90px;
-	text-align: right;
-	${props => props.active && gradientBackground}
-	&:hover {
-		padding-right: ${props => props.active ? '150' : '90'}px;
-	}
-`
-
-const Title = styled.div`
-	font-size: 50px;
-	& > small {
-		${gradientBackground}
-		background-clip: text;
-		-moz-background-clip: text;
-		-webkit-background-clip: text;
-	  -webkit-text-fill-color: transparent;
-		color: #CC21AD;
-		font-size: 1.2em;
-		line-height: 0%;
-	}
-	& > h2 {
-		text-decoration: underline;
-		font-size: 3.5em;
-		margin-top: 100px;
-		font-family: Space Mono;
-		font-weight: bold;
-		font-style: italic;
-		line-height: 0%;
-		letter-spacing: -8px;
-	}
+const Title = styled.h1`
+	color: #090b11;
+ 	font-weight: 700;
+ 	font-size: 160px;
+ 	font-family: Space Mono;
+ 	display: block;
+ 	margin: 0;
+	line-height: 90%;
+	letter-spacing: -8px;
+ 	font-style: italic;
+ 	text-decoration: underline;
 `
 
 
-export default ({ isServer }) => (
-	<Layout title="Home" background="/static/pattern-black-2.png">
-		<Row size="70">
-			<Container id="welcome">
-				<Title>
-					<small>We are</small>
-					<h2>Blackome</h2>
-				</Title>
-			</Container>
-			<Container id="description" center>
-				Description
-			</Container>
-		</Row>
-		<Row size="30" padding="0" fixed>
-			<Container>
-				<Items>
-					<Item href="#welcome" active>Welcome</Item>
-					<Item href="#description">Description</Item>
-					<Item href="#services">For you</Item>
-					<Item href="#join-us">Join Us</Item>
-				</Items>
-			</Container>
-		</Row>
-	</Layout>
+
+function Home() {
+	return (
+		<section name="Home">
+			<Flex align="center" justify="center" wrap>
+				<FullScreenBox id="welcome">
+					<div>
+						<SubTitle>We are</SubTitle>
+						<Title>Blackome</Title>
+						<StyledButton>Our Services</StyledButton>
+						<StyledButton inverted>Contact Us</StyledButton>
+					</div>
+				</FullScreenBox>
+				<FullScreenBox id="info">Information</FullScreenBox>
+				<FullScreenBox id="services">Our Services</FullScreenBox>
+				<FullScreenBox id="contact">Work with us</FullScreenBox>
+			</Flex>
+		</section>
+	)
+}
+
+
+export default () => (
+	<Layout
+		title="Home"
+		background={{
+			image: "/static/pattern-black.png",
+		}}
+		menuItems={[
+			{ name: 'Welcome', link: '#welcome' },
+			{ name: 'Info', link: '#info' },
+			{ name: 'Services', link: '#services' },
+			{ name: 'Contact', link: '#contact' },
+		]}
+	><Home /></Layout>
 )

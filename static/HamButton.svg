@@ -1,0 +1,39 @@
+<svg width="95" height="95" viewBox="0 0 95 95" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Menu Button</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-12550 -5962)">
+<g id="Menu Button">
+<g id="Ellipse 6" filter="url(#filter0_d)">
+<use xlink:href="#path0_fill" transform="translate(12558 5970)" fill="url(#paint0_linear)"/>
+</g>
+<g id="Line">
+<use xlink:href="#path1_fill" transform="translate(12585.1 6016.19)" fill="#FFFFFF"/>
+</g>
+<g id="Line">
+<use xlink:href="#path2_fill" transform="translate(12592 6006.1)" fill="#FFFFFF"/>
+</g>
+<g id="Line">
+<use xlink:href="#path3_fill" transform="translate(12577 5996)" fill="#FFFFFF"/>
+</g>
+</g>
+</g>
+<defs>
+<filter id="filter0_d" filterUnits="userSpaceOnUse" x="12550" y="5962" width="95" height="95" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 255 0"/>
+<feOffset dx="2" dy="2"/>
+<feGaussianBlur stdDeviation="5"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.0352941 0 0 0 0 0.0431373 0 0 0 0 0.0666667 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+</filter>
+<linearGradient id="paint0_linear" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(-62.5 -2.24511e-07 2.24513e-07 -62.5 75 69.25)">
+<stop offset="0" stop-color="#56CCF2"/>
+<stop offset="1" stop-color="#2F80ED"/>
+</linearGradient>
+<path id="path0_fill" d="M 75 37.5C 75 58.2107 58.2107 75 37.5 75C 16.7893 75 0 58.2107 0 37.5C 0 16.7893 16.7893 0 37.5 0C 58.2107 0 75 16.7893 75 37.5Z"/>
+<path id="path1_fill" d="M 0 1.90384C 0 0.85238 0.85238 0 1.90384 0L 27.9958 0C 29.0473 0 29.8997 0.85238 29.8997 1.90384C 29.8997 2.95531 29.0473 3.80769 27.9958 3.80769L 1.90384 3.80769C 0.85238 3.80769 0 2.95531 0 1.90384Z"/>
+<path id="path2_fill" d="M 0 1.90384C 0 0.85238 0.85238 0 1.90384 0L 21.0959 0C 22.1474 0 22.9998 0.85238 22.9998 1.90384C 22.9998 2.95531 22.1474 3.80769 21.0959 3.80769L 1.90384 3.80769C 0.85238 3.80769 0 2.95531 0 1.90384Z"/>
+<path id="path3_fill" d="M 0 2.08694C 0 0.934353 0.934353 0 2.08694 0L 35.9129 0C 37.0655 0 37.9999 0.934353 37.9999 2.08694C 37.9999 3.23952 37.0655 4.17387 35.9129 4.17387L 2.08694 4.17387C 0.934353 4.17387 0 3.23952 0 2.08694Z"/>
+</defs>
+</svg>

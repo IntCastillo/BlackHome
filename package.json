@@ -1,6 +1,6 @@
 {
   "name": "'",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Blackome Digital Agency Home Page",
   "main": "index.js",
   "scripts": {
@@ -17,10 +17,13 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-preset-stage-0": "^6.24.1",
+    "grid-styled": "^2.0.0-8",
     "next": "beta",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-media": "^1.6.1",
+    "react-no-ssr": "^1.1.0",
     "styled-components": "2.0.0"
   }
 }
