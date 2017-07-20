@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import Head from 'next/head'
 import styled, { injectGlobal, keyframes } from 'styled-components'
@@ -31,7 +31,7 @@ const StyledBackground = styled.div`
 `
 
 
-export default class Layout extends Component {
+export default class Layout extends React.Component {
 	state = {
 		componentLoaded: false,
 	};
@@ -62,7 +62,7 @@ export default class Layout extends Component {
 
 	componentDidMount() {
 		this.setState({componentLoaded: true})
-		return injectGlobal`
+		injectGlobal`
 			* { box-sizing: border-box; transition: all .3s ease-in-out; }
 			html, body { overflow-x: hidden; }
 			body {
@@ -82,7 +82,7 @@ export default class Layout extends Component {
 			    padding: 10px 0; 
 			}
 			::-webkit-scrollbar-thumb {
-			    border-radius: 4px;
+			    border-radius: 2px;
 			    background-image: linear-gradient(to right, #2F80ED, #56CCF2);
 			    background-image: -webkit-linear-gradient(left, #2F80ED, #56CCF2);
 			}

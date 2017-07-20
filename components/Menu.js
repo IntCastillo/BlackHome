@@ -1,13 +1,16 @@
 import React from 'react'
-import Link from 'next/link'
+import {
+	Element,
+	Link as ScrollLink,
+	DirectLink,
+	Events,
+	animateScroll,
+	scrollSpy,
+} from 'react-scroll'
 import NoSSR from 'react-no-ssr'
 import styled, {css} from 'styled-components'
+import {Assets} from '@/components'
 
-
-const gradientBackground = css`
-	background-image: linear-gradient(to right, #2F80ED, #56CCF2);
-	background-image: -webkit-linear-gradient(left, #2F80ED, #56CCF2);
-`
 
 const CloseLines = css`
 	& span:nth-child(1) { transform: rotate(45deg); position: absolute; width: 70%;left: 5%; }
@@ -42,7 +45,7 @@ const CircleMenu = styled.div`
 `
 
 const CircleButton = styled.div`
-	${gradientBackground}
+	${Assets.gradient}
 	border-radius: 100px;
 	position: absolute;
 	top: 0;
@@ -76,8 +79,8 @@ const LineMenu = styled.div`
 		z-index: 14;
 		opacity: 1;
 		transition-delay: .2s;
-		transform: rotate(0);
-		transform: translateX(0);
+		transform: rotate(0deg);
+		transform: translateX(0px);
 	}
 	/* Lines width */
 	& span:nth-child(2) { width: 50%; }
@@ -101,6 +104,7 @@ const List = styled.ul`
 
 const Item = styled.li`
 	border-bottom: 0px solid rgba(255,255,255,0);
+	cursor: pointer;
 	display: block;
 	font-size: 20px;
 	margin: 0 20px;
@@ -119,6 +123,8 @@ const Logo = styled.figure`
 	margin: .5vh;
 	position: relative;
 	width: 7vh;
+	transform: rotate(0);
+	&:hover { transform: rotate(180deg);  }
 	& > img {
 		width: auto;
 		height: 100%;
@@ -139,15 +145,52 @@ function SSRItemsList({ items }) {
 }
 
 
-function CustomList({ items }) {
+class CustomList extends React.Component {
+	componentDidMount() {
+    Events.scrollEvent.register('begin', () => {
+      console.log("begin", arguments)
+    })
+
+    Events.scrollEvent.register('end', () => {
+      console.log("end", arguments)
+    })
+
+    scrollSpy.update()
+  }
+
+	render() {
+		const {items} = this.props
+
+		return (
+			<List>
+				{items.map(({name, link}, index) => (
+					<Item key={index}>
+						<ScrollLink
+							activeClass="active"
+							to={link}
+							spy={true}
+							smooth={true}
+							duration={500}
+						>{name}</ScrollLink>
+					</Item>
+				))}
+			</List>
+		)
+	}
+}
+
+function MenuButton({ active, onClick }) {
 	return (
-		<List>
-			{items.map(({name, link}, index) => (
-				<Item key={index}>
-					<a href={link}>{name}</a>
-				</Item>
-			))}
-		</List>
+		<div>
+			<CircleMenu onClick={onClick} active={active}>
+				<CircleButton />
+				<LineMenu active={active}>
+					<span />
+					<span />
+					<span />
+				</LineMenu>
+			</CircleMenu>
+		</div>
 	)
 }
 
@@ -172,16 +215,7 @@ export default class Menu extends React.Component {
 					<CustomList items={items} />
 				</NoSSR>
 
-				<div>
-					<CircleMenu onClick={this.handleMenuActive} active={menuActive}>
-						<CircleButton />
-						<LineMenu active={menuActive}>
-							<span />
-							<span />
-							<span />
-						</LineMenu>
-					</CircleMenu>
-				</div>
+				<MenuButton onClick={this.handleMenuActive} active={menuActive} />
 
 			</NavBar>
 		)

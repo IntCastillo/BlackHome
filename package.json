@@ -24,6 +24,7 @@
     "react-dom": "^15.6.1",
     "react-media": "^1.6.1",
     "react-no-ssr": "^1.1.0",
+    "react-scroll": "^1.5.4",
     "styled-components": "2.0.0"
   }
 }
