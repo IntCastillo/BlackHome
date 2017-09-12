@@ -1,88 +1,81 @@
-import React from 'react'
-import {Flex} from 'grid-styled'
-import styled, {css} from 'styled-components'
-// Components
-import {Layout, Assets} from '@/components'
+import React, {Component} from 'react'
+import Typing, {Backspace, Delay} from 'react-typing-animation'
+import {Layout, Slide} from '@utils'
+import {animations} from '@assets'
+import Button from '@components/button'
 
-
-const FullScreenBox = styled(Flex).attrs({
-	pt: '8vh',
-	width: '100vh',
-	align: "center",
-	justify: "center",
-	wrap: true,
-})`
-	height: 100vh;
-	padding-top: 8vh;
-	width: 100vh;
-	align-items: center;
-	justify-content: center;
-	flex-wrap: wrap;
-	display: flex;
-	margin: 0 auto;
-`
-
-
-const SubTitle = styled.h3`
-	color: #2F80ED;
- 	font-size: 64px;
-	-webkit-background-clip: text;
- 	-webkit-text-fill-color: transparent;
- 	font-weight: 300;
- 	margin: 0;
-	${Assets.gradient}
-`
-
-const Title = styled.h1`
-	color: #090b11;
- 	font-weight: 700;
- 	font-size: 160px;
- 	font-family: Space Mono;
- 	display: block;
- 	margin: 0;
-	line-height: 90%;
-	letter-spacing: -8px;
- 	font-style: italic;
- 	text-decoration: underline;
-`
-
-
-
-function Home() {
-	const {Button, gradient} = Assets
-	// const Button = Assets('Button')
-
-	return (
-		<section name="Home">
-			<Flex align="center" justify="center" wrap>
-				<FullScreenBox id="welcome">
-					<div>
-						<SubTitle> We are</SubTitle>
-						<Title>Blackome</Title>
-						<Button primary>Our Services</Button>
-						<Button>Contact Us</Button>
-					</div>
-				</FullScreenBox>
-				<FullScreenBox id="info">Information</FullScreenBox>
-				<FullScreenBox id="services">Our Services</FullScreenBox>
-				<FullScreenBox id="contact">Work with us</FullScreenBox>
-			</Flex>
-		</section>
-	)
+const background = {
+	image: '/static/blackpattern.png',
+	size: '525px', repeat: true,
+	custom: {
+		position: 'fixed',
+		top: '-100vh', bottom: '-100vh',
+		right: '-100vh', left: '-100vh',
+		height: 'auto', width: 'auto',
+		animation: `${animations.rotateBackground} 200s linear infinite`,
+	}
 }
 
+const AwesomeText = styled.div`
+	min-width: 900px;
+	& h3 {
+		background: -webkit-linear-gradient(left, #2F80ED, #56CCF2, #56CCF2, #56CCF2, #56CCF2);
+		background: linear-gradient(to right, #2F80ED, #56CCF2, #56CCF2, #56CCF2, #56CCF2);
+		-webkit-background-clip: text;
+	  -webkit-text-fill-color: transparent;
+	  font-weight: 400;
+	  font-size: 3.5rem;
+	  margin: 0;
+	}
+	& h2 {
+		color: #090b11;
+		font-family: Space Mono;
+		font-size: 12rem;
+		font-weight: 600;
+		letter-spacing: -5px;
+		line-height: 100%;
+		margin: 0;
+	}
+	& h2.finale { font-weight: 700; font-style: italic; text-decoration: underline; }
+	& span {
+    animation: none;
+		color: transparent;
+		font-size: 1px;
+		padding-left: 0;
+		opacity: 0;
+		text-decoration: none;
+  }
+`
 
 export default () => (
-	<Layout
-		title="Home"
-		background={{
-			image: "/static/pattern-black.png",
-		}}
-		menuItems={[
-			{ name: 'Welcome', link: 'welcome' },
-			{ name: 'Info', link: 'info' },
-			{ name: 'Services', link: 'services' },
-			{ name: 'Contact', link: 'contact' },
-		]}
-	><Home /></Layout>
+	<Layout title="Home">
+		<Slide name="Welcome" background={background}>
+			<AwesomeText>
+				<h3>We are:</h3>
+				<div style={{minHeight: '200px'}}><Typing speed={100}>
+					<h2>
+						Design<span />
+						<Delay ms={2500} />
+						<Backspace count={6} delay={750} />
+						<Delay ms={500} />
+						Code<span />
+						<Delay ms={2500} />
+						<Backspace count={4} delay={750} />
+						<Delay ms={500} />
+					</h2>
+					<h2 className="finale">Blackome<span /></h2>
+				</Typing></div>
+				<Button prefetch to="/about" gradient big>Our Services</Button>
+				<Button prefetch to="/about" big bold>
+					Contact Us
+					<img className="icon rotate" src="/static/icons/right-arrow.svg" />
+				</Button>
+			</AwesomeText>
+		</Slide>
+
+		<Slide name="Info"><h1>2</h1></Slide>
+		<Slide name="Services"><h1>3</h1></Slide>
+		<Slide name="Contact"><h1>4</h1></Slide>
+	</Layout>
 )
+

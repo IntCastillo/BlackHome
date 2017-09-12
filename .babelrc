@@ -4,6 +4,7 @@
     "stage-0"
   ],
   "plugins": [
+    ["styled-components-require"],
     ["styled-components", {
       "ssr": true,
       "displayName": true,
@@ -12,14 +13,16 @@
     ["module-alias", [
       {
         "src": "./components",
-        "expose": "@/components"
+        "expose": "@components"
       },
       {
-        "src": "./blackome.config.js",
-        "expose": "@/config"
+        "src": "./utils",
+        "expose": "@utils"
       },
-    ]],
-    ["transform-class-properties"],
-    ["transform-decorators-legacy"]
+      {
+        "src": "./utils/assets.js",
+        "expose": "@assets"
+      }
+    ]]
   ]
 }
